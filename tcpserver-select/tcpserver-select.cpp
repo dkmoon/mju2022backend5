@@ -3,6 +3,7 @@
 #include <iostream>
 #include <list>
 #include <map>
+#include <memory>
 #include <thread>
 
 #include <WinSock2.h>
