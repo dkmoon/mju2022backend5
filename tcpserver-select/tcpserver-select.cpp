@@ -97,7 +97,7 @@ bool processClient(shared_ptr<Client> client) {
 
     // socket 으로부터 데이터를 받는다.
     // TCP 는 연결 기반이므로 누가 보냈는지는 accept 시 결정되고 그 뒤로는 send/recv 만 호출한다.
-    shared_ptr<char> buf{ new char[dataLen] };
+    shared_ptr<char> buf(new char[dataLen]);
     offset = 0;
     while (offset < dataLen) {
         int r = recv(activeSock, buf.get() + offset, dataLen - offset, 0);
@@ -191,7 +191,7 @@ int main()
             }
             else {
                 // 새로 client 객체를 만든다.
-                shared_ptr<Client> newClient{ new Client };
+                shared_ptr<Client> newClient(new Client);
                 newClient->sock = activeSock;
 
                 // socket 을 key 로 하고 해당 객체 포인터를 value 로 하는 map 에 집어 넣는다.
